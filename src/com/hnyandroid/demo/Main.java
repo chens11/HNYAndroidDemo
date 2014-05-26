@@ -1,9 +1,14 @@
 package com.hnyandroid.demo;
 
+import java.util.List;
+
 import android.R.array;
+import android.R.integer;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.test.suitebuilder.annotation.LargeTest;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,12 +23,16 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.hnyandroid.demo.handler.HandlerDemo;
+
 public class Main extends Activity implements OnItemSelectedListener,OnItemClickListener{
 	
 	private static String[] list = new String[]
 	{
-			"test synchronized",
+			"test handler",
 			"保持通话",
+			"乱世佳人(飘)",
+			"乱世佳人(飘)",
 			"乱世佳人(飘)",
 			"怪侠一枝梅",
 			"第五空间",
@@ -56,12 +65,29 @@ public class Main extends Activity implements OnItemSelectedListener,OnItemClick
 		// TODO Auto-generated method stub
 
 		String string = (String)parent.getAdapter().getItem(position);
-
-
-		if (string.equals("test synchronized")) {
-
+		if (string.equals("test handler")) {
+			Intent intent = new Intent(this, HandlerDemo.class);
+			startActivity(intent);
 		}
-		else if (true) {
+		else if (string.equals("test synchronized")) {
+			//
+		}
+		else if (string.equals("test synchronized")) {
+			//
+		}
+		else if (string.equals("test synchronized")) {
+			//
+		}
+		else if (string.equals("test synchronized")) {
+			//
+		}
+		else if (string.equals("test synchronized")) {
+			//
+		}
+		else if (string.equals("test synchronized")) {
+			//
+		}
+		else if (string.equals("test synchronized")) {
 			//
 		}
 		
@@ -87,13 +113,14 @@ public class Main extends Activity implements OnItemSelectedListener,OnItemClick
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return 5;
+			return list.length;
 		}
+
 
 		@Override
 		public Object getItem(int position) {
 			// TODO Auto-generated method stub
-			return "dddddd";
+			return list[position];
 		}
 
 		@Override
@@ -106,29 +133,19 @@ public class Main extends Activity implements OnItemSelectedListener,OnItemClick
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
 			String inflater = Context.LAYOUT_INFLATER_SERVICE;
-//			
 			LayoutInflater layoutInflater = (LayoutInflater) context
 					.getSystemService(inflater);
-//			LinearLayout linearLayout = null;
-//			if (textIdList.get(position) instanceof String)
-//			{
-//
-//				linearLayout = (LinearLayout) layoutInflater.inflate(
-//						R.layout.text, null);
-//				TextView textView = ((TextView) linearLayout
-//						.findViewById(R.id.textview));
-//				textView.setText(String.valueOf(textIdList.get(position)));
-//			}
 
-			LinearLayout linearLayout = (LinearLayout)layoutInflater.inflate(R.layout.mainlistcell, null);
+			LinearLayout linearLayout = null;
+			linearLayout = (LinearLayout) layoutInflater.inflate(
+					R.layout.mainlistcell, null);
 
-			TextView textView = (TextView)findViewById(R.id.textView1);
-			textView.setText("ddddddd");
+
+			TextView textView = (TextView)linearLayout.findViewById(R.id.textView1);
+			textView.setText(getItem(position).toString());
 			return linearLayout;
 		}
-		public void addText(String text)
-		{
-		}
+
 		public HNYAdapter (Context context) {
 			this.context = context;
 		}
